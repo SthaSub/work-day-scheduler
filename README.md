@@ -8,7 +8,7 @@ By using this application use able to generate desire event schedule for a day i
 
 # Deployment
 
-This application is running on github pages, to observe the running application please go through this link :- [work day scheduler]()
+This application is running on github pages, to observe the running application please go through this link :- [work day scheduler](https://sthasub.github.io/work-day-scheduler/)
 
 # Screenshots of Application
 1. 
