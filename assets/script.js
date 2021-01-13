@@ -9,7 +9,20 @@ $(document).ready(function () {
   var col3;
   var timeFromNineAM = 8; //intialise with value 8 for 9 am
   var timeFromTwelvePM = 0; //it indicates 12 pm value
-  var table;
+  var table; // variable for table tag
+  var LocalDateTime = JSJoda.LocalDateTime; // object creation from js-joda library 
+  var t = LocalDateTime.now(); //gets the system's current date, and time in 24 hour format
+  var parseDateAndTime = JSJoda.convert(t).toDate(); // gets parse value of date and time form JS library function toDate()
+  /**
+   * object creation for formatting the month, year and day
+   */
+  var options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }
+
   /**
    * functions
    */
