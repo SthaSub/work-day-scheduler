@@ -38,7 +38,7 @@ $(document).ready(function () {
   tableGeneration();
   cssForTable();
   getJSJodaTime();
-  
+
   function tableGeneration() {
     for (var r = 0; r < 9; r++) {
       input = $("<textarea id=\"input1\" placeholder=\"Enter your event here\"></textarea>");
@@ -94,4 +94,22 @@ $(document).ready(function () {
       }
     }
   }
+
+  function saveListener(){
+    $(".coln3 i").on("click", function () {
+      
+      var row = $(this).parent().parent()[0];
+      var eventRowColClass = $("." + row.className + " td:nth-child(2) #input1"); //for example, .row1 td:nth-child(2) #input1
+      if(eventRowColClass.attr("readonly") == "readonly")
+        {
+          alert("Cannot edit or insert new event in past and present time");
+          return;
+        }
+      var timeRowColClass = $("." + row.className + " .coln1.time-block"); //for instance, .row1 .coln1.time-block
+      var selectedTime = timeRowColClass.text().split("\t")[0];
+      var result = localStorageData(selectedTime, eventRowColClass.val());
+      if(result == "edited") alert("Event edited");
+      else if(result == "newEvent") alert("New Event inserted");
+    });
+  }  
 });
