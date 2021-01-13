@@ -32,13 +32,18 @@ $(document).ready(function () {
   var getCurrentHour = parseInt(ta._hour); //gets hour from ta variable
   var timeIn24HourArray = [9, 10, 11, 12, 13, 14, 15, 16, 17]; // time array containing 9 to 17 hours of day.
   var amTime; // stores the am time only
+  
   /**
-   * functions
+   * Entry point of program
    */
-  tableGeneration();
-  cssForTable();
-  getJSJodaTime();
-
+  main();
+  function main(){
+    tableGeneration();
+    cssForTable();
+    getJSJodaTime();
+    saveListener();
+    getDataFromLocalStorage();  
+  }
   function tableGeneration() {
     for (var r = 0; r < 9; r++) {
       input = $("<textarea id=\"input1\" placeholder=\"Enter your event here\"></textarea>");
@@ -73,7 +78,7 @@ $(document).ready(function () {
 
   function getJSJodaTime() {
     currentDate.text(parseDateAndTime.toLocaleDateString('en-AU', options)); // sets text to id for example, Monday, 11 January 2021
-    
+
     for (var c = 0; c < 9; c++) {
       rowColTime.rowCol = ".row" + (c + 1) + " td:nth-child(2)";
       rowColTime.timeHour = parseInt($(".row" + (c + 1) + " td:nth-child(1)").text().split("\t")[0]); // gets numeric value from column like 9 from 9 am
@@ -98,35 +103,34 @@ $(document).ready(function () {
   /**
    * this function takes action for saving data in localstorage
    */
-  function saveListener(){
+  function saveListener() {
     $(".coln3 i").on("click", function () {
-      
+
       var row = $(this).parent().parent()[0]; // gets grandparent tag from current target
       var eventRowColClass = $("." + row.className + " td:nth-child(2) #input1"); //for example, .row1 td:nth-child(2) #input1
-      if(eventRowColClass.attr("readonly") == "readonly")
-        {
-          alert("Cannot edit or insert new event in past and present time");
-          return;
-        }
+      if (eventRowColClass.attr("readonly") == "readonly") {
+        alert("Cannot edit or insert new event in past and present time");
+        return;
+      }
       var timeRowColClass = $("." + row.className + " .coln1.time-block"); //for instance, .row1 .coln1.time-block
       var selectedTime = timeRowColClass.text().split("\t")[0];
       var result = localStorageData(selectedTime, eventRowColClass.val());
-      if(result == "edited") alert("Event edited");
-      else if(result == "newEvent") alert("New Event inserted");
+      if (result == "edited") alert("Event edited");
+      else if (result == "newEvent") alert("New Event inserted");
     });
   }
-  
+
   /**
    * this function works for saving the entered data from user
    */
   function localStorageData(time, eventName) {
-    if(eventName == ""){ 
+    if (eventName == "") {
       alert("No event entered!!") // return undefined if nothing entered in textarea
       return;
     }
     for (var index = 0; index < localStorage.length; index++) {
       var element = localStorage.key(index);
-      if (element == time){
+      if (element == time) {
         localStorage.setItem(time, eventName);
         return "edited";
       }
@@ -134,6 +138,16 @@ $(document).ready(function () {
     localStorage.setItem(time, eventName);
     return "newEvent";
   }
-  
 
+  function getDataFromLocalStorage() {
+    for (var i = 0; i < localStorage.length; i++) {
+      for (var j = 0; j < timeArray.length; j++) {
+        if (timeArray[j].timeHour == localStorage.key(i)) {
+          var getLocalData = localStorage.getItem(localStorage.key(i)); // gets localStorage value by key
+          $(timeArray[j].rowCol + " #input1").text(getLocalData); // sets value of localstorage to textarea
+        }
+      }
+    }
+
+  }
 });
