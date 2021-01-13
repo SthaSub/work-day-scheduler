@@ -95,10 +95,13 @@ $(document).ready(function () {
     }
   }
 
+  /**
+   * this function takes action for saving data in localstorage
+   */
   function saveListener(){
     $(".coln3 i").on("click", function () {
       
-      var row = $(this).parent().parent()[0];
+      var row = $(this).parent().parent()[0]; // gets grandparent tag from current target
       var eventRowColClass = $("." + row.className + " td:nth-child(2) #input1"); //for example, .row1 td:nth-child(2) #input1
       if(eventRowColClass.attr("readonly") == "readonly")
         {
@@ -111,5 +114,26 @@ $(document).ready(function () {
       if(result == "edited") alert("Event edited");
       else if(result == "newEvent") alert("New Event inserted");
     });
-  }  
+  }
+  
+  /**
+   * this function works for saving the entered data from user
+   */
+  function localStorageData(time, eventName) {
+    if(eventName == ""){ 
+      alert("No event entered!!") // return undefined if nothing entered in textarea
+      return;
+    }
+    for (var index = 0; index < localStorage.length; index++) {
+      var element = localStorage.key(index);
+      if (element == time){
+        localStorage.setItem(time, eventName);
+        return "edited";
+      }
+    }
+    localStorage.setItem(time, eventName);
+    return "newEvent";
+  }
+  
+
 });
