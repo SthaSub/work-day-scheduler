@@ -11,7 +11,8 @@ By using this application use able to generate desire event schedule for a day i
 This application is running on github pages, to observe the running application please go through this link :- [work day scheduler](https://sthasub.github.io/work-day-scheduler/)
 
 # Screenshots of Application
-1. 
+1. ![No events]
+
 
 # For Future Enhancement
 This application can further developed by adding more time slots and day, week, month or year, and adding more UX features. 
