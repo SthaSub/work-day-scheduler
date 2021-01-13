@@ -11,8 +11,18 @@ By using this application use able to generate desire event schedule for a day i
 This application is running on github pages, to observe the running application please go through this link :- [work day scheduler](https://sthasub.github.io/work-day-scheduler/)
 
 # Screenshots of Application
-1. ![No events]
-
+1. Future Events
+![Future Events](./assets/images/futureevents.PNG)
+2. No Events display 
+![No Events display](./assets/images/noevent.PNG)
+3. past and present uneditable
+![past and present uneditable](./assets/images/cannoteditpastandpresent.PNG)
+4. Empty event cannot be saved
+![Empty event cannot be saved](./assets/images/emptyevententered.PNG)
+5. Event edited
+![Event edited](./assets/images/editevent.PNG)
+6. Past and Present events display
+![Past and Present events display](./assets/images/pastandpresentevents.PNG)
 
 # For Future Enhancement
 This application can further developed by adding more time slots and day, week, month or year, and adding more UX features. 
