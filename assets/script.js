@@ -23,13 +23,23 @@ $(document).ready(function () {
     day: 'numeric'
   }
 
+  var currentDate = $("#currentDay"); // getting id form index page
+
+  var ta = JSJoda.LocalTime.parse("10:42"); // gets the current time from the system
+  var rowColTime = { rowCol: "", timeHour: "" }; //object to row column tag and hour from the table
+  var timeArray = []; // stores the rowColTime obj
+
+  var getCurrentHour = parseInt(ta._hour); //gets hour from ta variable
+  var timeIn24HourArray = [9, 10, 11, 12, 13, 14, 15, 16, 17]; // time array containing 9 to 17 hours of day.
+  var amTime; // stores the am time only
   /**
    * functions
    */
   tableGeneration();
   cssForTable();
-
-  function tableGeneration(){
+  getJSJodaTime();
+  
+  function tableGeneration() {
     for (var r = 0; r < 9; r++) {
       input = $("<textarea id=\"input1\" placeholder=\"Enter your event here\"></textarea>");
       col1 = $("<td class=\"coln1\">");
@@ -49,7 +59,7 @@ $(document).ready(function () {
     }
   }
 
-  function cssForTable(){
+  function cssForTable() {
     table = $("<table class=\"table table-bordered\">"); //table tag with bootstarp table class
     table.css("border", "none");
     table.append(row);
@@ -61,5 +71,27 @@ $(document).ready(function () {
     $(".coln3").css({ "background-color": "skyblue", "text-align": "center" });
   }
 
-  
+  function getJSJodaTime() {
+    currentDate.text(parseDateAndTime.toLocaleDateString('en-AU', options)); // sets text to id for example, Monday, 11 January 2021
+    
+    for (var c = 0; c < 9; c++) {
+      rowColTime.rowCol = ".row" + (c + 1) + " td:nth-child(2)";
+      rowColTime.timeHour = parseInt($(".row" + (c + 1) + " td:nth-child(1)").text().split("\t")[0]); // gets numeric value from column like 9 from 9 am
+      timeArray[c] = rowColTime;
+      rowColTime = {}; // clears the object to get next value from table 
+    }
+
+    for (var key in timeArray) {
+      if (getCurrentHour > 12)
+        amTime = getCurrentHour - 12; //makes 24 hour to 12 hour time like 13 to 1 pm
+      else
+        amTime = getCurrentHour; // gets current hour from system
+      if (timeArray[key].timeHour === amTime) {
+        $(timeArray[key].rowCol).addClass("present"); // displays as red colour in table
+      } else if (timeIn24HourArray[key] > getCurrentHour) {
+        $(timeArray[key].rowCol).addClass("future"); //displays as green colour in table
+        $(timeArray[key].rowCol + " #input1").attr("readonly", false); // prevents entering the data in textarea
+      }
+    }
+  }
 });
