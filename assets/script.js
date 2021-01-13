@@ -25,7 +25,7 @@ $(document).ready(function () {
 
   var currentDate = $("#currentDay"); // getting id form index page
 
-  var ta = JSJoda.LocalTime.parse("13:42"); // gets the current time from the system
+  var ta = JSJoda.LocalTime.now(); // gets the current time from the system
   var rowColTime = { rowCol: "", timeHour: "" }; //object to row column tag and hour from the table
   var timeArray = []; // stores the rowColTime obj
 
