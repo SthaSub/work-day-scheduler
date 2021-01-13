@@ -44,6 +44,10 @@ $(document).ready(function () {
     saveListener();
     getDataFromLocalStorage();  
   }
+
+  /**
+   * generates tables and its row and columns, also assigned the time for each row.
+   */
   function tableGeneration() {
     for (var r = 0; r < 9; r++) {
       input = $("<textarea id=\"input1\" placeholder=\"Enter your event here\"></textarea>");
@@ -64,6 +68,9 @@ $(document).ready(function () {
     }
   }
 
+  /**
+   * modified and generated css for table
+   */
   function cssForTable() {
     table = $("<table class=\"table table-bordered\">"); //table tag with bootstarp table class
     table.css("border", "none");
@@ -76,6 +83,9 @@ $(document).ready(function () {
     $(".coln3").css({ "background-color": "skyblue", "text-align": "center" });
   }
 
+  /**
+   * time extraction from system using js joda library object 
+   */
   function getJSJodaTime() {
     currentDate.text(parseDateAndTime.toLocaleDateString('en-AU', options)); // sets text to id for example, Monday, 11 January 2021
 
@@ -139,6 +149,9 @@ $(document).ready(function () {
     return "newEvent";
   }
 
+  /**
+   * performs to get data from localstorage and displays on each textarea
+   */
   function getDataFromLocalStorage() {
     for (var i = 0; i < localStorage.length; i++) {
       for (var j = 0; j < timeArray.length; j++) {
