@@ -79,7 +79,7 @@ $(document).ready(function () {
     $(".coln1").addClass("time-block").css({ "border-right": "1px solid", "font-weight": "600" });
     $(".coln2").addClass("past").css({ "border": "1px solid white" });
     $(".coln2" + " #input1").attr("readonly", true);
-    $(".coln3").append("<i class=\"fad fa-save\" title=\"Click here to save event\"></i>");
+    $(".coln3").append("<i class=\"fad fa-save\" title=\"Click here to save event\"></i>"); // save icon appended in column 3 of table
     $(".coln3").css({ "background-color": "skyblue", "text-align": "center" });
   }
 
