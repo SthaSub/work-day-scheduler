@@ -97,7 +97,7 @@ $(document).ready(function () {
     }
 
     for (var key in timeArray) {
-      if (getCurrentHour > 12)
+      if (getCurrentHour > 12) // if hour is greater than 12 pm than subtraction will be performed by 12 to get time in pm like 14-12 = 2 pm
         amTime = getCurrentHour - 12; //makes 24 hour to 12 hour time like 13 to 1 pm
       else
         amTime = getCurrentHour; // gets current hour from system
