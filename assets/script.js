@@ -78,7 +78,7 @@ $(document).ready(function () {
     $(".container").append(table);
     $(".coln1").addClass("time-block").css({ "border-right": "1px solid", "font-weight": "600" });
     $(".coln2").addClass("past").css({ "border": "1px solid white" });
-    $(".coln2" + " #input1").attr("readonly", true);
+    $(".coln2" + " #input1").attr("readonly", true); // allows read only 
     $(".coln3").append("<i class=\"fad fa-save\" title=\"Click here to save event\"></i>"); // save icon appended in column 3 of table
     $(".coln3").css({ "background-color": "skyblue", "text-align": "center" });
   }
@@ -105,7 +105,7 @@ $(document).ready(function () {
         $(timeArray[key].rowCol).addClass("present"); // displays as red colour in table
       } else if (timeIn24HourArray[key] > getCurrentHour) {
         $(timeArray[key].rowCol).addClass("future"); //displays as green colour in table
-        $(timeArray[key].rowCol + " #input1").attr("readonly", false); // prevents entering the data in textarea
+        $(timeArray[key].rowCol + " #input1").attr("readonly", false); // allows to enter the data in textarea
       }
     }
   }
