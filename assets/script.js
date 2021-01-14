@@ -87,7 +87,7 @@ $(document).ready(function () {
    * time extraction from system using js joda library object 
    */
   function getJSJodaTime() {
-    currentDate.text(parseDateAndTime.toLocaleDateString('en-AU', options)); // sets text to id for example, Monday, 11 January 2021
+    currentDate.text(parseDateAndTime.toLocaleDateString('en-AU', options)); // sets current date in day, dd Month yyyy format to id for example, Monday, 11 January 2021
 
     for (var c = 0; c < 9; c++) {
       rowColTime.rowCol = ".row" + (c + 1) + " td:nth-child(2)";
