@@ -33,10 +33,8 @@ $(document).ready(function () {
   var timeIn24HourArray = [9, 10, 11, 12, 13, 14, 15, 16, 17]; // time array containing 9 to 17 hours of day.
   var amTime; // stores the am time only
   
-  /**
-   * Entry point of program
-   */
-  main();
+  main(); //Program starts from here
+  
   function main(){
     tableGeneration();
     cssForTable();
